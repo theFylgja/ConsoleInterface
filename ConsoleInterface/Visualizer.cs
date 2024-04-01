@@ -1,4 +1,5 @@
 ﻿using BiomeLibrary;
+using System;
 using System.IO;
 using System.Linq.Expressions;
 
@@ -10,9 +11,9 @@ namespace ConsoleInterface
         const string visualizerSettingsPath = @"C:\WinTools\Files\CI\BGDF\visualizer.bgdf";
         public void Initialize() 
         {
-            
+            Settings.LoadDefaults();
         }
-        static bool Call(string rootPath)
+        public static bool Call(string rootPath)
         {
             if(Settings.autoLoadSettings)
             {
@@ -22,27 +23,57 @@ namespace ConsoleInterface
             {
                 return true;
             }
-            if(Settings.visualizeDirectories && Settings.visualizeFiles)
+            if(Settings.printCurrentDirectory)
             {
-                string[] subEntries = Directory.GetFileSystemEntries(rootPath);
-                for(int i = 0; i < subEntries.Length; i++)
-                {
-                    if(Settings.enableSymbols)
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("-<");
+                Console.ForegroundColor = Settings.currentDirColor;
+                Console.Write(rootPath);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(">-");
+            }
+            string[] subEntries = Directory.GetFileSystemEntries(rootPath);
+            string[] postCut = new string[subEntries.Length];
+            for(int i = 0; i < subEntries.Length; i++)
+            {
+                postCut[i] = GetFileSystemEntryName(subEntries[i]);
+                if (IsFile(subEntries[i])) 
+                { 
+                    if(Settings.visualizeFiles)
                     {
-
+                        Console.ForegroundColor = Settings.symbolColor;
+                        Console.Write("    " + (Settings.enableSymbols ? Settings.symbols[1] : " "));
+                        Console.ForegroundColor = Settings.fileColor;
+                        Console.WriteLine(postCut[i]);
                     }
                 }
+                else if(Settings.visualizeDirectories)
+                {
+                    Console.ForegroundColor = Settings.symbolColor;
+                    Console.Write("    " + (Settings.enableSymbols ? Settings.symbols[1] : " "));
+                    Console.ForegroundColor = Settings.directoryColor;
+                    Console.WriteLine(postCut[i]);
+                }
+            }
+            return true;
 
-            }
         }
-        public bool isFile(string fullPath)
+        public static string GetFileSystemEntryName(string fullPath)
         {
-            if(File.Exists(fullPath))
+            char[] asCharArray = fullPath.ToCharArray();
+            int lastIndex = 0;
+            for(int i = 0; i < asCharArray.Length; i++)
             {
-                return true;
+                if (asCharArray[i] == '\\' || asCharArray[i] == @"\".ToCharArray()[0])
+                {
+                    lastIndex = i;
+                }
             }
-            return false;
-            
+            return fullPath.Substring(lastIndex + 1);
+        }
+        public static bool IsFile(string fullPath)
+        {
+            return File.Exists(fullPath);
         }
         public class Settings
         {
@@ -55,7 +86,12 @@ namespace ConsoleInterface
             //Directory-symbol, File-Symbol
             public static string[] symbols;
             public static bool autoLoadSettings;
-            public void LoadDefaults()
+            public static ConsoleColor fileColor;
+            public static ConsoleColor directoryColor;
+            public static ConsoleColor symbolColor;
+            public static ConsoleColor currentDirColor;
+            public static bool printCurrentDirectory;
+            public static void LoadDefaults()
             {
                 Server.VisualizerSettings.Set("visualizeDirectories", true);
                 Server.VisualizerSettings.Set("visualizeSubDirectories", false);
@@ -65,6 +101,11 @@ namespace ConsoleInterface
                 Server.VisualizerSettings.Set("enableSymbols", false);
                 Server.VisualizerSettings.Set("symbols", new string[] { "᨟", "᠅", });
                 Server.VisualizerSettings.Set("autoLoadSettings", false);
+                Server.VisualizerSettings.Set("fileColor", "darkGray");
+                Server.VisualizerSettings.Set("directoryColor", "gray");
+                Server.VisualizerSettings.Set("symbolColor", "white");
+                Server.VisualizerSettings.Set("currentDirColor", "yellow");
+                Server.VisualizerSettings.Set("printCurrentDirectory", true);
                 Load();
             }
             public static void Load()
@@ -77,6 +118,11 @@ namespace ConsoleInterface
                 enableSymbols = (bool)Server.VisualizerSettings.Get("enableSymbols");
                 symbols = (string[])Server.VisualizerSettings.Get("symbols");
                 autoLoadSettings = (bool)Server.VisualizerSettings.Get("autoLoadSettings");
+                fileColor = Server.MatchEnum((string)Server.VisualizerSettings.Get("fileColor"));
+                directoryColor = Server.MatchEnum((string)Server.VisualizerSettings.Get("directoryColor"));
+                symbolColor = Server.MatchEnum((string)Server.VisualizerSettings.Get("symbolColor"));
+                currentDirColor = Server.MatchEnum((string)Server.VisualizerSettings.Get("currentDirColor"));
+                printCurrentDirectory = (bool)Server.VisualizerSettings.Get("printCurrentDirectory");
             }
         }
     }

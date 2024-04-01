@@ -29,7 +29,7 @@ namespace ConsoleInterface
             NextSettings = new Bowl(path3);
         }
         //matching string to enum
-        public string MatchString(ConsoleColor color)
+        public static string MatchString(ConsoleColor color)
         {
             switch (color)
             {
@@ -69,7 +69,7 @@ namespace ConsoleInterface
                     return "white";
             }
         }
-        public ConsoleColor MatchEnum(string input)
+        public static ConsoleColor MatchEnum(string input)
         {
             switch (input)
             {
