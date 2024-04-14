@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bowl">
-      <HintPath>..\..\..\..\..\..\WinTools\Extensions\Bowl.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\VisualStudio\_projects\ToolBoxLibraries\Bowl\bin\Release\Bowl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
     <Compile Include="Next.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Visualizer.cs" />

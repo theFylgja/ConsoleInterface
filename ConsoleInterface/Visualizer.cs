@@ -9,7 +9,7 @@ namespace ConsoleInterface
     {
         //Important Paths
         const string visualizerSettingsPath = @"C:\WinTools\Files\CI\BGDF\visualizer.bgdf";
-        public void Initialize() 
+        public void Initialize()    
         {
             Settings.LoadDefaults();
         }
@@ -34,7 +34,7 @@ namespace ConsoleInterface
             }
             string[] subEntries = Directory.GetFileSystemEntries(rootPath);
             string[] postCut = new string[subEntries.Length];
-            for(int i = 0; i < subEntries.Length; i++)
+            for(int i = 0; i < subEntries.Length; i++)  
             {
                 postCut[i] = GetFileSystemEntryName(subEntries[i]);
                 if (IsFile(subEntries[i])) 
