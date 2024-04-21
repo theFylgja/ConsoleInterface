@@ -19,9 +19,12 @@ namespace ConsoleInterface
                 skip = true;
                 return;
             }
-            List<string> commandItems = new List<string>();
+            string[] commandItems = new string[32];
+            bool[] isPath = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
+            int itemIndex = 0;
             bool wasOpened = false;
             char[] chars = input.ToCharArray();
+            int last = 0;
 
             for(int i = 0; i < chars.Length; i++)
             {
@@ -30,8 +33,23 @@ namespace ConsoleInterface
                     case ' ':
                         if (!wasOpened)
                         {
-                            commandItems.Add(input.Substring(0, i + 1));
-                        } 
+                            commandItems[itemIndex] = input.Substring(last, i + 1);
+                            if (commandItems[itemIndex].Substring(0, 1) == "@")
+                            {
+                                isPath[itemIndex] = true;
+                            }
+                            itemIndex++;
+                            last = i + 1;
+                        }
+                        return;
+                    case '"':
+                        if (!wasOpened)
+                        {
+                            wasOpened = true;
+                            break;
+                        }
+                        wasOpened = false;
+                        break;
 
                 }
             }
