@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 using BiomeLibrary;
 using System;
 
@@ -8,6 +8,7 @@ namespace ConsoleInterface
     public class Server
     {
         public static string RootPath;
+        public static Stack<Command> commandStack; 
         public static Bowl Settings;
         public static Bowl VisualizerSettings;
         public static Bowl NextSettings;

@@ -4,8 +4,8 @@ namespace ConsoleInterface
 {
     public class Settings
     {
-        public bool visualizer;
-        public bool enableScripts;
-        public string homeDirectory;
+        public static bool visualizer;
+        public static bool enableScripts;
+        public static string homeDirectory;
     }
 }

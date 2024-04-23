@@ -44,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BGDFEditor.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="CommandHandler.cs" />
     <Compile Include="Next.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="StackController.cs" />
     <Compile Include="Visualizer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Settings.cs" />
