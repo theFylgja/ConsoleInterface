@@ -28,11 +28,11 @@ namespace ConsoleInterface
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("-<");
                 Console.ForegroundColor = Settings.currentDirColor;
-                Console.Write(rootPath);
+                Console.Write(Server.RootPath);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(">-");
             }
-            string[] subEntries = Directory.GetFileSystemEntries(rootPath);
+            string[] subEntries = Directory.GetFileSystemEntries(Server.RootPath);
             string[] postCut = new string[subEntries.Length];
             for(int i = 0; i < subEntries.Length; i++)  
             {

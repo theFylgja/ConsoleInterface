@@ -6,5 +6,6 @@ namespace ConsoleInterface
     {
         public bool visualizer;
         public bool enableScripts;
+        public string homeDirectory;
     }
 }

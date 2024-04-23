@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
 
 namespace ConsoleInterface
 {
@@ -50,9 +50,38 @@ namespace ConsoleInterface
                         }
                         wasOpened = false;
                         break;
+                    case '@':
+                        isPath[itemIndex] = true;
+                        break;
+                    default:
+                        break;
 
                 }
             }
+            //get physical paths
+            for(int i = 0; i < 32; i++)
+            {
+                if (isPath[i])
+                {
+                    commandItems[i] = GetPhysicalPath(commandItems[i]);
+                }
+            }
+        }
+        public string GetPhysicalPath(string path)
+        {
+            if(Directory.Exists(path))
+            {
+                return path;
+            }
+            else if(Directory.Exists(Server.RootPath + @"\" + path))
+            {
+                return Server.RootPath + path;
+            }
+            else if(Server.Var.Exists(path))
+            {
+                return (string)Server.Var.Get(path);
+            }
+            return (string)Server.Settings.Get("home");
         }
     }
 }

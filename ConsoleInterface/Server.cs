@@ -7,26 +7,32 @@ namespace ConsoleInterface
     //Hosts/provides variables needed by all other components
     public class Server
     {
+        public static string RootPath;
         public static Bowl Settings;
         public static Bowl VisualizerSettings;
         public static Bowl NextSettings;
+        public static Bowl Var;
         public static string SettingsPath;
         public static string VisualizerSettingsPath;
         public static string NextSettingsPath;
+        public static string VarPath;
         //maybe add cached settings later
         public static void Initialize()
         {
-            string path1 = @"C:\WinTools";
+            string path1 = @"C:\WinTools\Files\CI\BGDF\settings.bgdf";
             string path2 = @"C:\WinTools\Files\CI\BGDF\visualizer.bgdf";
             string path3 = @"C:\WinTools\Files\CI\BGDF\designPreferences.bgdf";
+            string path4 = @"C:\WinTools\Files\CI\BGDF\var.bgdf";
 
             SettingsPath = path1;
             VisualizerSettingsPath = path2;
             NextSettingsPath = path3;
+            VarPath = path4;
 
             Settings = new Bowl(path1);
             VisualizerSettings = new Bowl(path2);
             NextSettings = new Bowl(path3);
+            Var = new Bowl(path4);
         }
         //matching string to enum
         public static string MatchString(ConsoleColor color)
