@@ -9,7 +9,7 @@ namespace ConsoleInterface
     {
         //Important Paths
         const string visualizerSettingsPath = @"C:\WinTools\Files\CI\BGDF\visualizer.bgdf";
-        public void Initialize()    
+        public static void Initialize()    
         {
             Settings.LoadDefaults();
         }

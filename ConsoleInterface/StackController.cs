@@ -14,7 +14,17 @@ namespace ConsoleInterface
             switch(current.command[0])
             {
                 case "ci":
-
+                    switch(current.command[1])
+                    {
+                        case "print":
+                            Next.Adv(current.command[2]);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         public void CompileScript(string path)

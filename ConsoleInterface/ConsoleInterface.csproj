@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bowl">
-      <HintPath>..\..\ToolBoxLibraries\Bowl\bin\Release\Bowl.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\VisualStudio\_projects\ToolBoxLibraries\Bowl\bin\Release\Bowl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Main.cs" />
     <Compile Include="BGDFEditor.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="CommandHandler.cs" />
@@ -51,7 +52,6 @@
     <Compile Include="Server.cs" />
     <Compile Include="StackController.cs" />
     <Compile Include="Visualizer.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

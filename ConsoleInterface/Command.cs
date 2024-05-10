@@ -38,7 +38,7 @@ namespace ConsoleInterface
                             {
                                 isPath[itemIndex] = true;
                             }
-                            itemIndex++;
+                            itemIndex++; 
                             last = i + 1;
                         }
                         return;
@@ -58,8 +58,9 @@ namespace ConsoleInterface
 
                 }
             }
+            commandItems[itemIndex] = input.Substring(last);
             //get physical paths
-            for(int i = 0; i < 32; i++)
+            for (int i = 0; i < 32; i++)
             {
                 if (isPath[i])
                 {
@@ -79,7 +80,7 @@ namespace ConsoleInterface
             }
             else if(Server.Var.Exists(path))
             {
-                return (string)Server.Var.Get(path);
+                return Server.Settings.Path;
             }
             return (string)Server.Settings.Get("home");
         }

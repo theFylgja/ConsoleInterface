@@ -1,9 +1,20 @@
-﻿using BiomeLibrary;
+﻿using System;
+using System.Reflection;
 
 namespace ConsoleInterface
 {
-    public class Main
+    public class AAMainClass
     {
+        public static void Hub()
+        {
+            Visualizer.Initialize();
+            Server.commandStack.Push(new Command(Next.Cmd()));
+        }
 
+        public static void Setup()
+        {
+            Server.Initialize();
+            return;
+        }
     }
 }

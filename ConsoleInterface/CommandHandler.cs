@@ -13,7 +13,7 @@ namespace ConsoleInterface
             switch(cmd.command[1])
             {
                 case "settings":
-
+                    break;
             }
         }
     }
