@@ -6,7 +6,8 @@ namespace ConsoleInterface
     public class AAMainClass
     {
         public static void Hub()
-        {
+        { 
+            Server.Initialize();
             Visualizer.Initialize();
             Server.commandStack.Push(new Command(Next.Cmd()));
         }

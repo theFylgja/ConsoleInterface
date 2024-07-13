@@ -10,6 +10,7 @@ namespace ConsoleInterface
     {
         public void CIHandle(Command cmd)
         {
+            Next.Adv("at 'CIHandle'");
             switch(cmd.command[1])
             {
                 case "settings":
