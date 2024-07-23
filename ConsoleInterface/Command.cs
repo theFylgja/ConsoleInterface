@@ -11,6 +11,7 @@ namespace ConsoleInterface
 
         public Command(string input)
         {
+            Next.Err(".");
             if(input.Substring(0, 2) == "//")
             {
                 command = null;
@@ -19,6 +20,7 @@ namespace ConsoleInterface
                 skip = true;
                 return;
             }
+            Next.Err(".");
             string[] commandItems = new string[32];
             bool[] isPath = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
             int itemIndex = 0;
@@ -26,14 +28,16 @@ namespace ConsoleInterface
             char[] chars = input.ToCharArray();
             int last = 0;
 
-            for(int i = 0; i < chars.Length; i++)
+            Next.Err(".");
+            for (int i = 0; i < chars.Length; i++)
             {
                 switch(chars[i])
                 {
                     case ' ':
                         if (!wasOpened)
                         {
-                            commandItems[itemIndex] = input.Substring(last, i + 1);
+                            Next.Adv("at insert command");
+                            commandItems[itemIndex] = input.Substring(last, i - last);
                             if (commandItems[itemIndex].Substring(0, 1) == "@")
                             {
                                 isPath[itemIndex] = true;
@@ -41,7 +45,7 @@ namespace ConsoleInterface
                             itemIndex++; 
                             last = i + 1;
                         }
-                        return;
+                        break;
                     case '"':
                         if (!wasOpened)
                         {
@@ -58,15 +62,27 @@ namespace ConsoleInterface
 
                 }
             }
+            Next.Err(".");
             commandItems[itemIndex] = input.Substring(last);
             //get physical paths
             for (int i = 0; i < 32; i++)
             {
+                /*
+                if (commandItems[i].Substring(0, 1) == '"'.ToString())
+                {
+                    commandItems[i] = commandItems[i].Substring(1, commandItems[i].Length - 2);
+                }
+                */
                 if (isPath[i])
                 {
-                    commandItems[i] = GetPhysicalPath(commandItems[i]);
+                    commandItems[i] = GetPhysicalPath(commandItems[i].Substring(1));
                 }
             }
+            command = commandItems;
+            head = command[0];
+            autoLoaded = false;
+            skip = false;
+            Next.Err("done with that");
         }
         public string GetPhysicalPath(string path)
         {

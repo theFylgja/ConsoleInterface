@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleInterface", "Console
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualCI", "VirtualCI\VirtualCI.csproj", "{9436DCE8-CE35-4898-898C-605EC62CFCA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9436DCE8-CE35-4898-898C-605EC62CFCA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9436DCE8-CE35-4898-898C-605EC62CFCA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9436DCE8-CE35-4898-898C-605EC62CFCA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

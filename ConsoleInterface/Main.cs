@@ -9,7 +9,21 @@ namespace ConsoleInterface
         { 
             Server.Initialize();
             Visualizer.Initialize();
-            Server.commandStack.Push(new Command(Next.Cmd()));
+
+            StackController controller = new StackController();
+
+            //Next.Adv(new Command("ci print helloWorld").command[0]);
+
+            try
+            {
+                Server.commandStack.Push(new Command(Next.Cmd()));
+            }
+            catch(Exception e)
+            {
+                Next.Err(e.Message);
+            }
+            Server.allowExecute = true;
+            controller.Init();
         }
 
         public static void Setup()

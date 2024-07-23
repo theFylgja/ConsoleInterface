@@ -1,15 +1,41 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
+using System.Threading;
 namespace ConsoleInterface
 {
     public class StackController
     {
         public Command previous;
-        public Command current;
+        public Command current = null;
+        public void Init()
+        {
+            while(Server.allowExecute)
+            {
+                if (Server.commandStack.Count > 0 && Server.commandStack.Peek().skip)
+                {
+                    Next.Adv("at empty pop");
+                    Server.commandStack.Pop();
+                    break;
+                }
+                if(Server.commandStack.Count > 0)
+                {
+                    Next.Adv("at execute");
+                    Next.Err(Server.commandStack.Peek().skip.ToString());
+                    Execute();
+                }
+                Server.commandStack.Push(new Command(Next.Cmd()));
+                Thread.Sleep(50);
+            }
+            Thread.Sleep(50);
+            Init();
+        }
         public void Execute()
         {
-            previous = current;
+            //previous = current;
             current = Server.commandStack.Pop();
+            if(current.command == null)
+            {
+                Next.Err("incorrect skip handling");
+            }
 
             switch(current.command[0])
             {

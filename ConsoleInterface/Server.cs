@@ -1,6 +1,7 @@
 ﻿ using System.Collections.Generic;
 using BiomeLibrary;
 using System;
+using System.Threading.Tasks;
 
 namespace ConsoleInterface
 {
@@ -8,7 +9,8 @@ namespace ConsoleInterface
     public class Server
     {
         public static string RootPath;
-        public static Stack<Command> commandStack; 
+        public static Stack<Command> commandStack;
+        public static Task executer;
         public static Bowl Settings;
         public static Bowl VisualizerSettings;
         public static Bowl NextSettings;
@@ -17,6 +19,7 @@ namespace ConsoleInterface
         public static string VisualizerSettingsPath;
         public static string NextSettingsPath;
         public static string VarPath;
+        public static bool allowExecute;
         //maybe add cached settings later
         public static void Initialize()
         {
@@ -34,6 +37,7 @@ namespace ConsoleInterface
             VisualizerSettings = new Bowl(path2);
             NextSettings = new Bowl(path3);
             Var = new Bowl(path4);
+            commandStack = new Stack<Command>();
         }
         //matching string to enum
         public static string MatchString(ConsoleColor color)
