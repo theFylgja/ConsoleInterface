@@ -190,5 +190,17 @@ namespace ConsoleInterface
             Next.listEmptyError = ConsoleColor.White;
             Next.debug = ConsoleColor.White;
         }
+        public void Load()
+        {
+            Next.standard = MatchEnum((string)Server.NextSettings.Get("standard"));
+            Next.cmd = MatchEnum((string)Server.NextSettings.Get("cmd"));
+            Next.arg = MatchEnum((string)Server.NextSettings.Get("arg"));
+            Next.title = MatchEnum((string)Server.NextSettings.Get("title"));
+            Next.adv = MatchEnum((string)Server.NextSettings.Get("adv"));
+            Next.err = ConsoleColor.White;
+            Next.listItem = ConsoleColor.White;
+            Next.listEmptyError = ConsoleColor.White;
+            Next.debug = ConsoleColor.White;
+        }
     }
 }

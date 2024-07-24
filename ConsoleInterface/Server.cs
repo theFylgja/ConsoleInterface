@@ -20,6 +20,7 @@ namespace ConsoleInterface
         public static string NextSettingsPath;
         public static string VarPath;
         public static bool allowExecute;
+        public static string[] mountSymbols;
         //maybe add cached settings later
         public static void Initialize()
         {
@@ -39,13 +40,15 @@ namespace ConsoleInterface
             Var = new Bowl(path4);
             commandStack = new Stack<Command>();
 
-            Server.RootPath = (string)Settings.Get("homeDirectory");
             InitializeBowls();
+            Server.RootPath = (string)Settings.Get("homeDirectory");
+            Next.Debug(Server.RootPath);
+            Server.mountSymbols = (string[])Settings.Get("mountSymbols");
         }
 
         public static void InitializeBowls()
         {
-
+            Settings.Set("mountSymbols", new string[] { "@", "-" });
         }
         //matching string to enum
         public static string MatchString(ConsoleColor color)

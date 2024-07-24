@@ -16,7 +16,7 @@ namespace ConsoleInterface
 
             try
             {
-                Next.Debug("in try thing");
+                Next.Debug("in try clause");
                 Server.commandStack.Push(new Command(Next.Cmd()));
                 Next.Debug("pushed command");
             }

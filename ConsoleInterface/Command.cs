@@ -34,7 +34,7 @@ namespace ConsoleInterface
                         if (!wasOpened)
                         {
                             commandItems[itemIndex] = input.Substring(last, i - last);
-                            if (commandItems[itemIndex].Substring(0, 1) == "@")
+                            if (commandItems[itemIndex].Substring(0, 1) == "@" || commandItems[itemIndex].Substring(0, 1) == "-")
                             {
                                 isPath[itemIndex] = true;
                             }
@@ -51,6 +51,9 @@ namespace ConsoleInterface
                         wasOpened = false;
                         break;
                     case '@':
+                        isPath[itemIndex] = true;
+                        break;
+                    case '-':
                         isPath[itemIndex] = true;
                         break;
                     default:
@@ -99,7 +102,7 @@ namespace ConsoleInterface
             {
                 return Server.Settings.Path;
             }
-            return (string)Server.Settings.Get("home");
+            return null;
         }
     }
 }

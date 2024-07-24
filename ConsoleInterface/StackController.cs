@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
+
 namespace ConsoleInterface
 {
     public class StackController
@@ -47,7 +49,17 @@ namespace ConsoleInterface
                 default:
                     break;
             }
-            Visualizer.Call(Server.RootPath);
+            try
+            {
+                Visualizer.Call(Server.RootPath);
+            }
+            catch(Exception e)
+            {
+                if(e is System.UnauthorizedAccessException)
+                {
+                    Next.Err("access to the Directory was denied by the OS");
+                }
+            }
         }
         public void CompileScript(string path)
         {

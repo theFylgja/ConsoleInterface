@@ -100,7 +100,7 @@ namespace ConsoleInterface
                 Server.VisualizerSettings.Set("maxVisualizedItems", 10);
                 Server.VisualizerSettings.Set("enableSymbols", false);
                 Server.VisualizerSettings.Set("symbols", new string[] { "᨟", "᠅", });
-                Server.VisualizerSettings.Set("autoLoadSettings", false);
+                Server.VisualizerSettings.Set("autoLoadSettings", true);
                 Server.VisualizerSettings.Set("fileColor", "darkGray");
                 Server.VisualizerSettings.Set("directoryColor", "gray");
                 Server.VisualizerSettings.Set("symbolColor", "white");
