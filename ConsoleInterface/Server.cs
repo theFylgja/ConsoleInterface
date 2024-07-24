@@ -38,6 +38,14 @@ namespace ConsoleInterface
             NextSettings = new Bowl(path3);
             Var = new Bowl(path4);
             commandStack = new Stack<Command>();
+
+            Server.RootPath = (string)Settings.Get("homeDirectory");
+            InitializeBowls();
+        }
+
+        public static void InitializeBowls()
+        {
+
         }
         //matching string to enum
         public static string MatchString(ConsoleColor color)

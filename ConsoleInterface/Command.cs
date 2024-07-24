@@ -11,7 +11,6 @@ namespace ConsoleInterface
 
         public Command(string input)
         {
-            Next.Err(".");
             if(input.Substring(0, 2) == "//")
             {
                 command = null;
@@ -20,7 +19,6 @@ namespace ConsoleInterface
                 skip = true;
                 return;
             }
-            Next.Err(".");
             string[] commandItems = new string[32];
             bool[] isPath = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
             int itemIndex = 0;
@@ -28,7 +26,6 @@ namespace ConsoleInterface
             char[] chars = input.ToCharArray();
             int last = 0;
 
-            Next.Err(".");
             for (int i = 0; i < chars.Length; i++)
             {
                 switch(chars[i])
@@ -36,7 +33,6 @@ namespace ConsoleInterface
                     case ' ':
                         if (!wasOpened)
                         {
-                            Next.Adv("at insert command");
                             commandItems[itemIndex] = input.Substring(last, i - last);
                             if (commandItems[itemIndex].Substring(0, 1) == "@")
                             {
@@ -62,37 +58,42 @@ namespace ConsoleInterface
 
                 }
             }
-            Next.Err(".");
             commandItems[itemIndex] = input.Substring(last);
+            Next.Debug("Now Getting physical paths");
             //get physical paths
             for (int i = 0; i < 32; i++)
             {
-                /*
-                if (commandItems[i].Substring(0, 1) == '"'.ToString())
+                
+                if (commandItems[i]?.Substring(0, 1) == '"'.ToString())
                 {
+                    Next.Debug("removing quotation marks");
                     commandItems[i] = commandItems[i].Substring(1, commandItems[i].Length - 2);
+                    Next.Debug("removed quotation marks");
                 }
-                */
+                
                 if (isPath[i])
                 {
                     commandItems[i] = GetPhysicalPath(commandItems[i].Substring(1));
+                    Next.Debug("finished subfunction for physical path");
                 }
             }
+            Next.Debug("Finished getting physical path");
             command = commandItems;
             head = command[0];
             autoLoaded = false;
             skip = false;
-            Next.Err("done with that");
+            Next.Debug("command created");
         }
         public string GetPhysicalPath(string path)
         {
+            Next.Debug(Server.RootPath + @"\" + path);
             if(Directory.Exists(path))
             {
                 return path;
             }
             else if(Directory.Exists(Server.RootPath + @"\" + path))
             {
-                return Server.RootPath + path;
+                return Server.RootPath + @"\" + path;
             }
             else if(Server.Var.Exists(path))
             {

@@ -12,14 +12,12 @@ namespace ConsoleInterface
             {
                 if (Server.commandStack.Count > 0 && Server.commandStack.Peek().skip)
                 {
-                    Next.Adv("at empty pop");
+                    Next.Debug("at empty pop");
                     Server.commandStack.Pop();
                     break;
                 }
                 if(Server.commandStack.Count > 0)
                 {
-                    Next.Adv("at execute");
-                    Next.Err(Server.commandStack.Peek().skip.ToString());
                     Execute();
                 }
                 Server.commandStack.Push(new Command(Next.Cmd()));
@@ -30,6 +28,7 @@ namespace ConsoleInterface
         }
         public void Execute()
         {
+            Next.Debug("at StackController.Execute");
             //previous = current;
             current = Server.commandStack.Pop();
             if(current.command == null)
@@ -40,18 +39,15 @@ namespace ConsoleInterface
             switch(current.command[0])
             {
                 case "ci":
-                    switch(current.command[1])
-                    {
-                        case "print":
-                            Next.Adv(current.command[2]);
-                            break;
-                        default:
-                            break;
-                    }
+                    Handler.CIHandle(current);
+                    break;
+                case "cd":
+                    Handler.IO.MountDirectory(current);
                     break;
                 default:
                     break;
             }
+            Visualizer.Call(Server.RootPath);
         }
         public void CompileScript(string path)
         {

@@ -32,7 +32,7 @@ namespace ConsoleInterface
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(">-");
             }
-            string[] subEntries = Directory.GetFileSystemEntries(Server.RootPath);
+            string[] subEntries = Directory.GetFileSystemEntries(rootPath);
             string[] postCut = new string[subEntries.Length];
             for(int i = 0; i < subEntries.Length; i++)  
             {

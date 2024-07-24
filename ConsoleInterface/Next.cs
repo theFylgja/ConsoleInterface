@@ -17,6 +17,7 @@ namespace ConsoleInterface
         public static ConsoleColor err = ConsoleColor.Red;
         public static ConsoleColor listItem = ConsoleColor.Gray;
         public static ConsoleColor listEmptyError = ConsoleColor.Red;
+        public static ConsoleColor debug = ConsoleColor.Cyan;
 
         public static string Cmd()
         {
@@ -50,6 +51,13 @@ namespace ConsoleInterface
         public static void Err(string msg)
         {
             Console.ForegroundColor = err;
+            Console.WriteLine(msg);
+            Console.ForegroundColor = standard;
+        }
+
+        public static void Debug(string msg)
+        {
+            Console.ForegroundColor = debug;
             Console.WriteLine(msg);
             Console.ForegroundColor = standard;
         }
@@ -168,6 +176,7 @@ namespace ConsoleInterface
             Next.err = ConsoleColor.Red;
             Next.listItem = ConsoleColor.Gray;
             Next.listEmptyError = ConsoleColor.Red;
+            Next.debug = ConsoleColor.Cyan;
         }
         public void LoadAllWhite()
         {
@@ -179,6 +188,7 @@ namespace ConsoleInterface
             Next.err = ConsoleColor.White;
             Next.listItem = ConsoleColor.White;
             Next.listEmptyError = ConsoleColor.White;
+            Next.debug = ConsoleColor.White;
         }
     }
 }
