@@ -22,7 +22,10 @@ namespace ConsoleInterface
                 {
                     Execute();
                 }
-                Server.commandStack.Push(new Command(Next.Cmd()));
+                if(Server.commandStack.Count == 0)
+                {
+                    Server.commandStack.Push(new Command(Next.Cmd())); 
+                }
                 Thread.Sleep(50);
             }
             Thread.Sleep(50);
@@ -45,6 +48,15 @@ namespace ConsoleInterface
                     break;
                 case "cd":
                     Handler.IO.MountDirectory(current);
+                    break;
+                case "sett":
+                    Handler.Settings.SettingCommandHandler(current);
+                    break;
+                case "var":
+                    Handler.IO.VarHandler(current);
+                    break;
+                case "fs":
+                    Handler.IO.FileSystemHandler(current);
                     break;
                 default:
                     break;

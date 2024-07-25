@@ -18,6 +18,7 @@ namespace ConsoleInterface
         public static ConsoleColor listItem = ConsoleColor.Gray;
         public static ConsoleColor listEmptyError = ConsoleColor.Red;
         public static ConsoleColor debug = ConsoleColor.Cyan;
+        public static ConsoleColor text = ConsoleColor.Black;
 
         public static string Cmd()
         {
@@ -60,6 +61,18 @@ namespace ConsoleInterface
             Console.ForegroundColor = debug;
             Console.WriteLine(msg);
             Console.ForegroundColor = standard;
+        }
+
+        public static void Text(string msg)
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = text;
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.Write(msg);
+            Console.ForegroundColor = standard;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         public static void List(string[] input)
@@ -177,6 +190,7 @@ namespace ConsoleInterface
             Next.listItem = ConsoleColor.Gray;
             Next.listEmptyError = ConsoleColor.Red;
             Next.debug = ConsoleColor.Cyan;
+            Next.text = ConsoleColor.Black;
         }
         public void LoadAllWhite()
         {
@@ -189,6 +203,7 @@ namespace ConsoleInterface
             Next.listItem = ConsoleColor.White;
             Next.listEmptyError = ConsoleColor.White;
             Next.debug = ConsoleColor.White;
+            Next.text = ConsoleColor.Black;
         }
         public void Load()
         {
@@ -197,10 +212,11 @@ namespace ConsoleInterface
             Next.arg = MatchEnum((string)Server.NextSettings.Get("arg"));
             Next.title = MatchEnum((string)Server.NextSettings.Get("title"));
             Next.adv = MatchEnum((string)Server.NextSettings.Get("adv"));
-            Next.err = ConsoleColor.White;
-            Next.listItem = ConsoleColor.White;
-            Next.listEmptyError = ConsoleColor.White;
-            Next.debug = ConsoleColor.White;
+            Next.err = MatchEnum((string)Server.NextSettings.Get("err"));
+            Next.listItem = MatchEnum((string)Server.NextSettings.Get("listItem"));
+            Next.listEmptyError = MatchEnum((string)Server.NextSettings.Get("listEmptyError"));
+            Next.debug = MatchEnum((string)Server.NextSettings.Get("debug"));
+            Next.text = MatchEnum((string)Server.NextSettings.Get("text"));
         }
     }
 }

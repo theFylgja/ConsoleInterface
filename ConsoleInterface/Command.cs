@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System;
 
 namespace ConsoleInterface
 {
@@ -11,6 +12,14 @@ namespace ConsoleInterface
 
         public Command(string input)
         {
+            if(input == null)
+            {
+                command = null;
+                head = null;
+                autoLoaded = false;
+                skip = true;
+                return;
+            }
             if(input.Substring(0, 2) == "//")
             {
                 command = null;
@@ -51,10 +60,16 @@ namespace ConsoleInterface
                         wasOpened = false;
                         break;
                     case '@':
-                        isPath[itemIndex] = true;
+                        if(!wasOpened)
+                        {
+                            isPath[itemIndex] = true;
+                        }
                         break;
                     case '-':
-                        isPath[itemIndex] = true;
+                        if (!wasOpened)
+                        {
+                            isPath[itemIndex] = true;
+                        }
                         break;
                     default:
                         break;
@@ -66,7 +81,11 @@ namespace ConsoleInterface
             //get physical paths
             for (int i = 0; i < 32; i++)
             {
-                
+                Next.Debug(commandItems[i]?.Substring(0, 1));
+                if (commandItems[i]?.Substring(0, 1) == "@" || commandItems[i]?.Substring(0, 1) == "-")
+                {
+                    commandItems[i] = commandItems[i].Substring(1);
+                }
                 if (commandItems[i]?.Substring(0, 1) == '"'.ToString())
                 {
                     Next.Debug("removing quotation marks");
@@ -76,7 +95,7 @@ namespace ConsoleInterface
                 
                 if (isPath[i])
                 {
-                    commandItems[i] = GetPhysicalPath(commandItems[i].Substring(1));
+                    commandItems[i] = GetPhysicalPath(commandItems[i]);
                     Next.Debug("finished subfunction for physical path");
                 }
             }
@@ -90,17 +109,21 @@ namespace ConsoleInterface
         public string GetPhysicalPath(string path)
         {
             Next.Debug(Server.RootPath + @"\" + path);
-            if(Directory.Exists(path))
+            if(path == ".")
+            {
+                return Server.RootPath;
+            }
+            if(Directory.Exists(path) || File.Exists(path))
             {
                 return path;
             }
-            else if(Directory.Exists(Server.RootPath + @"\" + path))
+            else if(Directory.Exists(Server.RootPath + @"\" + path) || File.Exists(Server.RootPath + @"\" + path))
             {
                 return Server.RootPath + @"\" + path;
             }
             else if(Server.Var.Exists(path))
             {
-                return Server.Settings.Path;
+                return (string)Server.Var.Get(path);
             }
             return null;
         }

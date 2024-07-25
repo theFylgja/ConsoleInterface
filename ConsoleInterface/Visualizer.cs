@@ -55,6 +55,7 @@ namespace ConsoleInterface
                     Console.WriteLine(postCut[i]);
                 }
             }
+            Console.WriteLine();
             return true;
 
         }

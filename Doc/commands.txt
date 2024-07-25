@@ -1,0 +1,6 @@
+ci print "Thing you want" 
+
+cd -Directory
+cd @Directory
+
+ci settings set Visualizer true

@@ -2,6 +2,7 @@
 using BiomeLibrary;
 using System;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ConsoleInterface
 {
@@ -15,10 +16,12 @@ namespace ConsoleInterface
         public static Bowl VisualizerSettings;
         public static Bowl NextSettings;
         public static Bowl Var;
+        public static Bowl FileEditors;
         public static string SettingsPath;
         public static string VisualizerSettingsPath;
         public static string NextSettingsPath;
         public static string VarPath;
+        public static string FileEditorsPath;
         public static bool allowExecute;
         public static string[] mountSymbols;
         //maybe add cached settings later
@@ -28,16 +31,20 @@ namespace ConsoleInterface
             string path2 = @"C:\WinTools\Files\CI\BGDF\visualizer.bgdf";
             string path3 = @"C:\WinTools\Files\CI\BGDF\designPreferences.bgdf";
             string path4 = @"C:\WinTools\Files\CI\BGDF\var.bgdf";
+            string path5 = @"C:\WinTools\FIles\CI\BGDF\fileEditors.bgdf";
 
             SettingsPath = path1;
             VisualizerSettingsPath = path2;
             NextSettingsPath = path3;
             VarPath = path4;
+            FileEditorsPath = path5;
 
             Settings = new Bowl(path1);
             VisualizerSettings = new Bowl(path2);
             NextSettings = new Bowl(path3);
             Var = new Bowl(path4);
+            FileEditors = new Bowl(path5);
+
             commandStack = new Stack<Command>();
 
             InitializeBowls();
@@ -130,6 +137,12 @@ namespace ConsoleInterface
                 default:
                     return ConsoleColor.White;
             }
+        }
+
+        public static string GetFileExtension(string fullPath)
+        {
+            FileInfo fileInfo = new FileInfo(fullPath);
+            return fileInfo.Extension;
         }
     }
 }
