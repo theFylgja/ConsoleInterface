@@ -12,7 +12,7 @@ namespace ConsoleInterface
 
         public Command(string input)
         {
-            if(input == null)
+            if(input == null || input == String.Empty)
             {
                 command = null;
                 head = null;
@@ -20,7 +20,7 @@ namespace ConsoleInterface
                 skip = true;
                 return;
             }
-            if(input.Substring(0, 2) == "//")
+            else if(input.Substring(0, 2) == "//")
             {
                 command = null;
                 head = null;
@@ -77,38 +77,30 @@ namespace ConsoleInterface
                 }
             }
             commandItems[itemIndex] = input.Substring(last);
-            Next.Debug("Now Getting physical paths");
             //get physical paths
             for (int i = 0; i < 32; i++)
             {
-                Next.Debug(commandItems[i]?.Substring(0, 1));
                 if (commandItems[i]?.Substring(0, 1) == "@" || commandItems[i]?.Substring(0, 1) == "-")
                 {
                     commandItems[i] = commandItems[i].Substring(1);
                 }
                 if (commandItems[i]?.Substring(0, 1) == '"'.ToString())
                 {
-                    Next.Debug("removing quotation marks");
                     commandItems[i] = commandItems[i].Substring(1, commandItems[i].Length - 2);
-                    Next.Debug("removed quotation marks");
                 }
                 
                 if (isPath[i])
                 {
                     commandItems[i] = GetPhysicalPath(commandItems[i]);
-                    Next.Debug("finished subfunction for physical path");
                 }
             }
-            Next.Debug("Finished getting physical path");
             command = commandItems;
             head = command[0];
             autoLoaded = false;
             skip = false;
-            Next.Debug("command created");
         }
         public string GetPhysicalPath(string path)
         {
-            Next.Debug(Server.RootPath + @"\" + path);
             if(path == ".")
             {
                 return Server.RootPath;

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualCI", "VirtualCI\Virt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGDFEditor", "BGDFEditor\BGDFEditor.csproj", "{64D29CEB-8FD9-471D-ADFA-5B51600972E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F82A76D2-F1C5-4E3B-8B09-99D6FD9FA270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D29CEB-8FD9-471D-ADFA-5B51600972E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D29CEB-8FD9-471D-ADFA-5B51600972E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D29CEB-8FD9-471D-ADFA-5B51600972E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D29CEB-8FD9-471D-ADFA-5B51600972E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

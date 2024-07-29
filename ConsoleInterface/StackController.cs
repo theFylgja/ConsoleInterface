@@ -14,8 +14,18 @@ namespace ConsoleInterface
             {
                 if (Server.commandStack.Count > 0 && Server.commandStack.Peek().skip)
                 {
-                    Next.Debug("at empty pop");
                     Server.commandStack.Pop();
+                    try
+                    {
+                        Visualizer.Call(Server.RootPath);
+                    }
+                    catch (Exception e)
+                    {
+                        if (e is System.UnauthorizedAccessException)
+                        {
+                            Next.Err("access to the Directory was denied by the OS");
+                        }
+                    }
                     break;
                 }
                 if(Server.commandStack.Count > 0)
@@ -33,7 +43,6 @@ namespace ConsoleInterface
         }
         public void Execute()
         {
-            Next.Debug("at StackController.Execute");
             //previous = current;
             current = Server.commandStack.Pop();
             if(current.command == null)

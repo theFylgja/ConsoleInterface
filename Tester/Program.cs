@@ -1,14 +1,17 @@
 ﻿using System;
-using ConsoleInterface;
+using System.Threading;
+
+using BiomeLibrary;
 namespace Tester
 {
     internal class Program
     {
         static void Main()
         {
-            Command cmd = new Command("ci print helloWorld");
-            Next.List(cmd.command);
-            Next.Arg();
+            Bowl test = new Bowl(@"C:\WinTools\Files\CI\BGDF\settings.bgdf");
+            Console.WriteLine();
+            Console.WriteLine(test.Get("visualizer").GetType().Name);
+            Thread.Sleep(50000);
         }
     }
 }

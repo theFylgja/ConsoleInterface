@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3108E7DD-2DEE-4DE8-8566-F5C09CB29A08}</ProjectGuid>
+    <ProjectGuid>{64D29CEB-8FD9-471D-ADFA-5B51600972E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleInterface</RootNamespace>
-    <AssemblyName>ConsoleInterface</AssemblyName>
+    <RootNamespace>BGDFEditor</RootNamespace>
+    <AssemblyName>BGDFEditor</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BGDFEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Release\BGDFEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Bowl">
       <HintPath>..\..\ToolBoxLibraries\Bowl\bin\Release\Bowl.dll</HintPath>
     </Reference>
@@ -48,16 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileAccessProvider.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="BGDFEditor.cs" />
-    <Compile Include="Command.cs" />
-    <Compile Include="CommandHandler.cs" />
-    <Compile Include="Next.cs" />
-    <Compile Include="Server.cs" />
-    <Compile Include="StackController.cs" />
-    <Compile Include="Visualizer.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Editor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

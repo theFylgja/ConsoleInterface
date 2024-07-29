@@ -16,15 +16,11 @@ namespace ConsoleInterface
 
             try
             {
-                Next.Debug("in try clause");
                 Server.commandStack.Push(new Command(Next.Cmd()));
-                Next.Debug("pushed command");
             }
             catch(Exception e)
             {
-                Next.Debug("at catch error(e)");
                 Next.Err(e.Message);
-                Next.Debug(e.Source);
             }
             Server.allowExecute = true;
             controller.Init();

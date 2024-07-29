@@ -4,3 +4,5 @@ cd -Directory
 cd @Directory
 
 ci settings set Visualizer true
+
+fs -file.txt dpt //Displays plain text of file

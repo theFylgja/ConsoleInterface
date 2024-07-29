@@ -50,11 +50,8 @@ namespace ConsoleInterface
 
             public static void FileSystemHandler(Command cmd)
             {
-                Next.Debug("at Handler.FileSystemHandler");
                 if (File.Exists(cmd.command[1]))
                 {
-                    Next.Debug("Existence confirmed");
-                    Next.Debug(Server.GetFileExtension(cmd.command[1]));
                     if (Server.GetFileExtension(cmd.command[1]) == ".exe")
                     {
                         Next.Adv("starting application");

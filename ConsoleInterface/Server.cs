@@ -49,7 +49,6 @@ namespace ConsoleInterface
 
             InitializeBowls();
             Server.RootPath = (string)Settings.Get("homeDirectory");
-            Next.Debug(Server.RootPath);
             Server.mountSymbols = (string[])Settings.Get("mountSymbols");
         }
 
