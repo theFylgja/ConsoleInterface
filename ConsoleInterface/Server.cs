@@ -24,6 +24,7 @@ namespace ConsoleInterface
         public static string FileEditorsPath;
         public static bool allowExecute;
         public static string[] mountSymbols;
+        public static string[] currentVisualizerContent;
         //maybe add cached settings later
         public static void Initialize()
         {

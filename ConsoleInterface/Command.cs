@@ -105,7 +105,11 @@ namespace ConsoleInterface
             {
                 return Server.RootPath;
             }
-            if(Directory.Exists(path) || File.Exists(path))
+            else if(path == "..")
+            {
+                return new DirectoryInfo(Server.RootPath).Parent.FullName;
+            }
+            else if(Directory.Exists(path) || File.Exists(path))
             {
                 return path;
             }
@@ -117,7 +121,11 @@ namespace ConsoleInterface
             {
                 return (string)Server.Var.Get(path);
             }
-            return null;
+            else if(Convert.ToInt32(path) <= Server.currentVisualizerContent.Length && Convert.ToInt32(path) != 0)
+            {
+                return Server.currentVisualizerContent[Convert.ToInt32(path) - 1];
+            }
+            return "defavalidpathtrustme";
         }
     }
 }

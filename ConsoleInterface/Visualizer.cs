@@ -15,7 +15,8 @@ namespace ConsoleInterface
         }
         public static bool Call(string rootPath)
         {
-            if(Settings.autoLoadSettings)
+            Server.Settings.Set("visualizer", true);
+            if (Settings.autoLoadSettings)
             {
                 Settings.Load();
             }
@@ -56,6 +57,7 @@ namespace ConsoleInterface
                 }
             }
             Console.WriteLine();
+            Server.currentVisualizerContent = subEntries;
             return true;
 
         }

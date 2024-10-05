@@ -67,6 +67,9 @@ namespace ConsoleInterface
                 case "fs":
                     Handler.IO.FileSystemHandler(current);
                     break;
+                case "wei":
+                    Handler.Web.WebHandler(current);
+                    break;
                 default:
                     break;
             }
