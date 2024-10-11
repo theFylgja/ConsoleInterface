@@ -20,6 +20,12 @@ namespace ConsoleInterface
                 case "var":
                     IO.VarHandler(cmd);
                     break;
+                case "ox":
+                    IO.FileSystemHandler(new Command($"fs {Server.RootPath} opex"));
+                    break;
+                case "opex":
+                    IO.FileSystemHandler(new Command($"fs {Server.RootPath} opex"));
+                    break;
                 default:
                     break;
             }
@@ -39,7 +45,7 @@ namespace ConsoleInterface
                 {
                     Server.Var.Set(cmd.command[1], cmd.command[3] ?? (string)Server.Settings.Get("homeDirectory"));
                 }
-                catch(Exception ex)
+                catch
                 {
                     Next.Err("invalid parameters");
                 }
@@ -56,7 +62,7 @@ namespace ConsoleInterface
                         {
                             Process.Start(cmd.command[1]);
                         }
-                        catch(Exception ex)
+                        catch
                         {
                             Next.Err("starting of process failed");
                         }
@@ -159,18 +165,20 @@ namespace ConsoleInterface
             {
                 try
                 {
-                    if(url.Length < 12)
+                    url = Server.Var.Exists(url) ? (string)Server.Var.Get(url) : url;
+                    if(!Server.Var.Exists(url) && url.Length < 12)
                     {
                         url = @"https://www." + url;
-                    }
-                    if(url.Substring(0, 12) != @"https://www.")
-                    {
-                        if (url.Substring(0, 4) != @"www.")
+
+                        if (url.Substring(0, 12) != @"https://www.")
                         {
-                            url = @"www." + url;
+                            if (url.Substring(0, 4) != @"www.")
+                            {
+                                url = @"www." + url;
+                            }
+                            url = @"https://" + url;
+
                         }
-                        url = @"https://" + url;
-                        
                     }
                     Next.Debug(url);
                     Process.Start(new ProcessStartInfo
@@ -179,7 +187,7 @@ namespace ConsoleInterface
                         UseShellExecute = true
                     });
                 }
-                catch{ Next.Debug("bro caught lackin"); }
+                catch{}
             }
         }
 
@@ -194,7 +202,7 @@ namespace ConsoleInterface
                         {
                             Server.Settings.Set(cmd.command[2], cmd.command[3] ?? (string)Server.Settings.Get(cmd.command[2]));
                         }
-                        catch(Exception e)
+                        catch
                         {
                             Next.Err("can't set the setting");
                         }
