@@ -121,9 +121,16 @@ namespace ConsoleInterface
             {
                 return (string)Server.Var.Get(path);
             }
-            else if(Convert.ToInt32(path) <= Server.currentVisualizerContent.Length && Convert.ToInt32(path) != 0)
+            else
             {
-                return Server.currentVisualizerContent[Convert.ToInt32(path) - 1];
+                try
+                {
+                    if(Convert.ToInt32(path) <= Server.currentVisualizerContent.Length && Convert.ToInt32(path) != 0)
+                    {
+                        return Server.currentVisualizerContent[Convert.ToInt32(path) - 1];
+                    }
+                }
+                catch { }
             }
             return "defavalidpathtrustme";
         }
