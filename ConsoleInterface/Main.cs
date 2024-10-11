@@ -6,7 +6,8 @@ namespace ConsoleInterface
     public class AAMainClass
     {
         public static void Hub()
-        { 
+        {
+            Next.Debug("at Hub");
             Server.Initialize();
             Visualizer.Initialize();
 
