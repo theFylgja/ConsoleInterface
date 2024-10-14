@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using BiomeLibrary;
+using static ConsoleInterface.Handler;
 
 namespace ConsoleInterface
 {
@@ -8,11 +10,7 @@ namespace ConsoleInterface
     {
         public static void HandleFileAccess(Command cmd)
         {
-            if (cmd.command[2] == "dpt")
-            {
-                //means "display plain text"
-                PlainTextDisplay(cmd.command[1]);
-            }
+            Process.Start("explorer.exe", cmd.command[1]);
         }
 
         public static void PlainTextDisplay(string filePath)
