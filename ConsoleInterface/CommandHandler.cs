@@ -17,9 +17,6 @@ namespace ConsoleInterface
                 case "sett":
                     Settings.SettingCommandHandler(cmd);
                     break;
-                case "var":
-                    IO.VarHandler(cmd);
-                    break;
                 case "ox":
                     IO.FileSystemHandler(new Command($"fs {Server.RootPath} opex"));
                     break;
@@ -195,7 +192,7 @@ namespace ConsoleInterface
         {
             public static void SettingCommandHandler(Command cmd)
             {
-                switch(cmd.command[2])
+                switch(cmd.command[1])
                 {
                     case "set":
                         try
