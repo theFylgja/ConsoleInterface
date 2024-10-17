@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 
 namespace ConsoleInterface
 {
@@ -134,6 +135,26 @@ namespace ConsoleInterface
                         {
                             Next.Debug("@" + cmd.command[1]);
                             Process.Start("explorer.exe", cmd.command[1]);
+                        }
+                        catch { }
+                        break;
+                    case "unzip":
+                        cmd.command[3] = cmd.command[3] ?? Server.RootPath;
+                        try
+                        {
+                            ZipFile.ExtractToDirectory(cmd.command[1], cmd.command[3]);
+                            Next.Adv("operation successful");
+                        }
+                        catch 
+                        {
+                            Next.Err("operation failed");
+                        }
+                        break;
+                    case "zip":
+                        cmd.command[3] = cmd.command[3] ?? Server.RootPath;
+                        try
+                        {
+                            ZipFile.CreateFromDirectory(cmd.command[1], $@"{cmd.command[3]}\{new DirectoryInfo(cmd.command[1]).Name}.zip");
                         }
                         catch { }
                         break;
