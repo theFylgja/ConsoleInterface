@@ -85,7 +85,7 @@ namespace ConsoleInterface
                 }
             }
         }
-        public void CompileScript(string path)
+        public static void CompileScript(string path)
         {
             if(!Settings.enableScripts)
             {

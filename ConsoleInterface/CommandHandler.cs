@@ -25,15 +25,33 @@ namespace ConsoleInterface
                     IO.FileSystemHandler(new Command($"fs {Server.RootPath} opex"));
                     break;
                 default:
+                    if (File.Exists(cmd.command[1]))
+                    {
+                        LoadScript(cmd);
+                    }
                     break;
+            }
+        }
+        public static void LoadScript(Command cmd)
+        {
+            if (cmd.command[2] != "lsc")
+            {
+                return;
+            }
+            try
+            {
+                StackController.CompileScript(cmd.command[1]);
+            }
+            catch
+            {
+                Next.Err("loading of script has failed.");
             }
         }
 
         public class IO
         {
             public static void MountDirectory(Command cmd)
-            {
-                Next.Adv("at cd"); 
+            { 
                 Server.RootPath = Directory.Exists(cmd.command[1]) ? cmd.command[1] : Server.RootPath;
             }
 
