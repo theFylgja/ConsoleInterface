@@ -60,6 +60,7 @@ namespace ConsoleInterface
                 try
                 {
                     Server.Var.Set(cmd.command[1], cmd.command[3] ?? (string)Server.Settings.Get("homeDirectory"));
+                    Next.Adv($"created variable {cmd.command[1]} and set the value");
                 }
                 catch
                 {
@@ -85,6 +86,7 @@ namespace ConsoleInterface
                     }
                     else
                     {
+                        Next.Adv("opening the file");
                         FileAccessProvider.HandleFileAccess(cmd);
                     }
                 }
@@ -94,13 +96,15 @@ namespace ConsoleInterface
                         try
                         {
                             File.Delete(cmd.command[1]);
+                            Next.Adv("successfully deleted the file");
                         }
-                        catch { }
+                        catch { Next.Err("the operation has failed"); }
                         try
                         {
                             Directory.Delete(cmd.command[1]);
+                            Next.Adv("successfully deleted the directory");
                         }
-                        catch { }
+                        catch { Next.Err("the operation has failed"); }
                         break;
                     case "cref":
                         if (!File.Exists(Server.RootPath + @"\" + cmd.command[1]))
@@ -108,6 +112,7 @@ namespace ConsoleInterface
                             try
                             {
                                 File.Create(Server.RootPath + @"\" + cmd.command[1]);
+                                Next.Adv("successfully created file");
                             }
                             catch 
                             {
@@ -121,6 +126,7 @@ namespace ConsoleInterface
                             try
                             {
                                 Directory.CreateDirectory(Server.RootPath + @"\" + cmd.command[1]);
+                                Next.Adv("successfully created directory");
                             }
                             catch
                             {
@@ -151,7 +157,6 @@ namespace ConsoleInterface
                     case "opex":
                         try
                         {
-                            Next.Debug("@" + cmd.command[1]);
                             Process.Start("explorer.exe", cmd.command[1]);
                         }
                         catch { }

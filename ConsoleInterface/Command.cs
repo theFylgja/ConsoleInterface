@@ -3,10 +3,11 @@ using System;
 
 namespace ConsoleInterface
 {
-    public class Command
+    public class Command : IDisposable
     {
         public string[] command {  get; set; }
         public string head {  get; set; }
+        public string fullString { get; set; }
         public bool autoLoaded { get; set; }
         public bool skip { get; set; }
 
@@ -16,6 +17,7 @@ namespace ConsoleInterface
             {
                 command = null;
                 head = null;
+                fullString = null;
                 autoLoaded = false;
                 skip = true;
                 return;
@@ -24,10 +26,12 @@ namespace ConsoleInterface
             {
                 command = null;
                 head = null;
+                fullString = input;
                 autoLoaded = false;
                 skip = true;
                 return;
             }
+            fullString = input;
             string[] commandItems = new string[32];
             bool[] isPath = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
             int itemIndex = 0;
@@ -133,6 +137,10 @@ namespace ConsoleInterface
                 catch { }
             }
             return "defavalidpathtrustme";
+        }
+        public void Dispose()
+        {
+            return;
         }
     }
 }

@@ -49,6 +49,10 @@ namespace ConsoleInterface
             {
                 Next.Err("incorrect skip handling");
             }
+            else if(current.autoLoaded)
+            {
+                Next.Text(current.fullString);
+            }
 
             switch(current.command[0])
             {
@@ -73,17 +77,21 @@ namespace ConsoleInterface
                 default:
                     break;
             }
-            try
+            if(!current.autoLoaded)
             {
-                Visualizer.Call(Server.RootPath);
-            }
-            catch(Exception e)
-            {
-                if(e is System.UnauthorizedAccessException)
+                try
                 {
-                    Next.Err("access to the Directory was denied by the OS");
+                    Visualizer.Call(Server.RootPath);
+                }
+                catch (Exception e)
+                {
+                    if (e is System.UnauthorizedAccessException)
+                    {
+                        Next.Err("access to the Directory was denied by the OS");
+                    }
                 }
             }
+            current.Dispose();
         }
         public static void CompileScript(string path)
         {
@@ -95,7 +103,11 @@ namespace ConsoleInterface
             string[] fileContents = File.ReadAllLines(path);
             for(int i = fileContents.Length - 1; i >= 0 ; i--)
             {
-                Server.commandStack.Push(new Command(fileContents[i]));
+                using(Command tempCommand = new Command(fileContents[i]))
+                {
+                    tempCommand.autoLoaded = true;
+                    Server.commandStack.Push(tempCommand);
+                }
             }
         }
     }
