@@ -77,7 +77,7 @@ namespace ConsoleInterface
                 default:
                     break;
             }
-            if(!current.autoLoaded)
+            if (!current.autoLoaded || current.command[0] == "cd" || Server.commandStack.Count == 0)
             {
                 try
                 {
