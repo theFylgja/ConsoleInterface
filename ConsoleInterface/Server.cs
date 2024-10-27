@@ -11,6 +11,8 @@ namespace ConsoleInterface
     //Hosts/provides variables needed by all other components
     public class Server
     {
+        public static VersionInfo VersionInfo = new VersionInfo("0.1.2.13", "0.0.0.0");
+
         public static string RootPath;
         public static string crashPath = @"C:\WinTools\FIles\CI\crashLog.txt";
         public static Stack<Command> commandStack;
@@ -206,6 +208,17 @@ namespace ConsoleInterface
 
             // Dump the console content to the file
             return buffer.ToString();
+        }
+    }
+    public class VersionInfo
+    {
+        public string DevVersion { get; set; }
+        public string PublicVersion { get; set; }
+
+        public VersionInfo(string devVersion, string publicVersion)
+        {
+            DevVersion = devVersion;
+            PublicVersion = publicVersion;
         }
     }
 }

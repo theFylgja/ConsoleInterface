@@ -12,6 +12,16 @@ namespace ConsoleInterface
         {
             switch(cmd.command[1])
             {
+                case "get":
+                    if (cmd.command[2] == "dev")
+                    {
+                        Next.Text($"current version: {Server.VersionInfo.DevVersion}");
+                    }
+                    else if (cmd.command[2] == "dev")
+                    {
+                        Next.Text($"current version: {Server.VersionInfo.PublicVersion}");
+                    }
+                    break;
                 case "print":
                     Next.Adv(cmd.command[2]);
                     break;
