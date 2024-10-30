@@ -3,6 +3,13 @@ using System.Reflection;
 
 namespace ConsoleInterface
 {
+    public class Startup
+    {
+        public static void Execute()
+        {
+            AAMainClass.Hub();
+        }
+    }
     public class AAMainClass
     {
         public static void Hub()

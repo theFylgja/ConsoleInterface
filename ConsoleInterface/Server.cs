@@ -34,6 +34,10 @@ namespace ConsoleInterface
         //maybe add cached settings later
         public static void Initialize()
         {
+            if(!Directory.Exists(@"C:\WinTools\Files\CI\Cache"))
+            {
+                Directory.CreateDirectory(@"C:\WinTools\Files\CI\Cache");
+            }
             string path1 = @"C:\WinTools\Files\CI\BGDF\settings.bgdf";
             string path2 = @"C:\WinTools\Files\CI\BGDF\visualizer.bgdf";
             string path3 = @"C:\WinTools\Files\CI\BGDF\designPreferences.bgdf";

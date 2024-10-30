@@ -51,6 +51,7 @@ namespace ConsoleInterface
                             {
                                 isPath[itemIndex] = true;
                             }
+                            commandItems[itemIndex] = commandItems[itemIndex].Substring(commandItems[itemIndex].Length - 1) == '"'.ToString() ? commandItems[itemIndex].Substring(0, commandItems[itemIndex].Length - 1) : commandItems[itemIndex];
                             itemIndex++; 
                             last = i + 1;
                         }
@@ -59,6 +60,7 @@ namespace ConsoleInterface
                         if (!wasOpened)
                         {
                             wasOpened = true;
+                            last++;
                             break;
                         }
                         wasOpened = false;
@@ -87,10 +89,6 @@ namespace ConsoleInterface
                 if (commandItems[i]?.Substring(0, 1) == "@" || commandItems[i]?.Substring(0, 1) == "-")
                 {
                     commandItems[i] = commandItems[i].Substring(1);
-                }
-                if (commandItems[i]?.Substring(0, 1) == '"'.ToString())
-                {
-                    commandItems[i] = commandItems[i].Substring(1, commandItems[i].Length - 2);
                 }
                 
                 if (isPath[i])

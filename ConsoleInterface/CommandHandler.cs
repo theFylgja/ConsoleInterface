@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Net;
 
 namespace ConsoleInterface
 {
@@ -40,6 +41,17 @@ namespace ConsoleInterface
                         LoadScript(cmd);
                     }
                     break;
+            }
+        }
+        public static void CheckForNewVersion()
+        {
+            using (var client = new WebClient())
+            {
+                client.DownloadFile("https://github.com/theFylgja/ConsoleInterface/blob/development/ConsoleInterface/bin/Release/version.txt", @"C:\\WinTools\\Files\\CI\\Cache\checkVersion.txt");
+                if(File.ReadAllText(@"C:\WinTools\Files\CI\Cache\checkVersion.txt") != Server.VersionInfo.DevVersion)
+                {
+
+                }
             }
         }
         public static void LoadScript(Command cmd)
