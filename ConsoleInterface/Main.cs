@@ -20,7 +20,6 @@ namespace ConsoleInterface
 
             StackController controller = new StackController();
 
-            //Next.Adv(new Command("ci print helloWorld").command[0]);
 
             try
             {

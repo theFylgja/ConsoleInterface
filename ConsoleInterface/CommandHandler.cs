@@ -18,7 +18,7 @@ namespace ConsoleInterface
                     {
                         Next.Text($"current version: {Server.VersionInfo.DevVersion}");
                     }
-                    else if (cmd.command[2] == "dev")
+                    else if (cmd.command[2] == "public")
                     {
                         Next.Text($"current version: {Server.VersionInfo.PublicVersion}");
                     }
@@ -43,17 +43,7 @@ namespace ConsoleInterface
                     break;
             }
         }
-        public static void CheckForNewVersion()
-        {
-            using (var client = new WebClient())
-            {
-                client.DownloadFile("https://github.com/theFylgja/ConsoleInterface/blob/development/ConsoleInterface/bin/Release/version.txt", @"C:\\WinTools\\Files\\CI\\Cache\checkVersion.txt");
-                if(File.ReadAllText(@"C:\WinTools\Files\CI\Cache\checkVersion.txt") != Server.VersionInfo.DevVersion)
-                {
-
-                }
-            }
-        }
+        
         public static void LoadScript(Command cmd)
         {
             if (cmd.command[2] != "lsc")
@@ -218,10 +208,76 @@ namespace ConsoleInterface
                     case "url":
                         OpenWebLink(cmd.command[2]); 
                         break;
+                    case "upd":
+                        Updater(cmd);
+                        break;
+                    case "kraken":
+                        Updater(cmd);
+                        break;
                     default:
                         Next.Err("command not found");
                         break;
                 }
+            }
+
+            public static void Updater(Command cmd)
+            {
+                switch(cmd.command[2])
+                {
+                    case "check":
+                        CheckForNewVersion();
+                        break;
+                    case "getn":
+                        if(!CheckForNewVersion())
+                        {
+                            Next.Adv("you are already up to date");
+                            break;
+                        }
+                        GetNewVersion(); 
+                        break;
+                    default:
+                        break;
+                }
+            }
+            public static bool CheckForNewVersion()
+            {
+                try
+                {
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile("https://raw.githubusercontent.com/theFylgja/ConsoleInterface/refs/heads/development/ConsoleInterface/bin/Release/version.txt", @"C:\\WinTools\Files\CI\Cache\checkVersion.txt");
+                        if (File.ReadAllText(@"C:\WinTools\Files\CI\Cache\checkVersion.txt") != Server.VersionInfo.DevVersion)
+                        {
+                            Next.Adv($"a new version is available ({File.ReadAllText(@"C:\WinTools\Files\CI\Cache\checkVersion.txt")})");
+                            File.Delete(@"C:\WinTools\Files\CI\Cache\checkVersion.txt");
+                            return true;
+                        }
+                        else
+                        {
+                            Next.Adv("your files seem to be up to date");
+                            File.Delete(@"C:\WinTools\\Files\CI\Cache\checkVersion.txt");
+                            return false;
+                        }
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            public static void GetNewVersion()
+            {
+                try
+                {
+                    using (var client = new WebClient())
+                    {
+                        Next.Adv("downloading new contents...");
+                        client.DownloadFile("https://github.com/theFylgja/ConsoleInterface/raw/refs/heads/development/ConsoleInterface/bin/Release/ConsoleInterface.dll", @"C:\WinTools\Files\CI\Cache\ConsoleInterface.dll");
+                        Next.Adv("you'll have to stop the application and move the dll file into your application directory");
+                        Process.Start("explorer.exe", @"C:\WinTools\Files\CI\Cache\ConsoleInterface.dll");
+                    }
+                }
+                catch { }
             }
 
             public static void OpenWebLink(string url)

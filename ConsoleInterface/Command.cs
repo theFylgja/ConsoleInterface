@@ -51,7 +51,7 @@ namespace ConsoleInterface
                             {
                                 isPath[itemIndex] = true;
                             }
-                            commandItems[itemIndex] = commandItems[itemIndex].Substring(commandItems[itemIndex].Length - 1) == '"'.ToString() ? commandItems[itemIndex].Substring(0, commandItems[itemIndex].Length - 1) : commandItems[itemIndex];
+                            commandItems[itemIndex] = commandItems[itemIndex].Substring(commandItems[itemIndex].Length - 1) == '"'.ToString() ? commandItems[itemIndex].Substring(0, commandItems[itemIndex].Length - 2) : commandItems[itemIndex];
                             itemIndex++; 
                             last = i + 1;
                         }
