@@ -36,10 +36,13 @@ namespace ConsoleInterface
                 {
                     Server.commandStack.Push(new Command(Next.Cmd())); 
                 }
-                Thread.Sleep(50);
             }
             Thread.Sleep(50);
             Init();
+        }
+        public static void CleanRoot()
+        {
+
         }
         public void Execute()
         {

@@ -7,8 +7,15 @@ namespace VirtualCI
 {
     public class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
+            if(args.Length < 0)
+            {
+                if (File.Exists(args[0]))
+                {
+                    Next.Adv("got path: " + args[0]);
+                }
+            }
             File.WriteAllText(@"C:\WinTools\Files\CI\Cache\reboot.txt", "0");
             AppDomain domain = AppDomain.CreateDomain("MainDomain");
             domain.Load("ConsoleInterface.dll");

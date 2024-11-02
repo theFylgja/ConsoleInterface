@@ -51,7 +51,7 @@ namespace ConsoleInterface
                             {
                                 isPath[itemIndex] = true;
                             }
-                            commandItems[itemIndex] = commandItems[itemIndex].Substring(commandItems[itemIndex].Length - 1) == '"'.ToString() ? commandItems[itemIndex].Substring(0, commandItems[itemIndex].Length - 2) : commandItems[itemIndex];
+                            commandItems[itemIndex] = commandItems[itemIndex].Substring(commandItems[itemIndex].Length - 1) == '"'.ToString() ? commandItems[itemIndex].Substring(0, commandItems[itemIndex].Length - 1) : commandItems[itemIndex];
                             itemIndex++; 
                             last = i + 1;
                         }
@@ -83,6 +83,7 @@ namespace ConsoleInterface
                 }
             }
             commandItems[itemIndex] = input.Substring(last);
+            commandItems[itemIndex] = commandItems[itemIndex].Substring(commandItems[itemIndex].Length - 1) == '"'.ToString() ? commandItems[itemIndex].Substring(0, commandItems[itemIndex].Length - 1) : commandItems[itemIndex];
             //get physical paths
             for (int i = 0; i < 32; i++)
             {
