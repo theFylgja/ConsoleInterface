@@ -42,6 +42,12 @@ namespace ConsoleInterface
         }
         public static void CleanRoot()
         {
+            char[] chars = Server.RootPath.ToCharArray();
+            string outputString = "";
+            for(int i = 0; i < chars.Length; i++)
+            {
+                if()
+            }
 
         }
         public void Execute()
