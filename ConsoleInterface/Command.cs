@@ -104,25 +104,26 @@ namespace ConsoleInterface
         }
         public string GetPhysicalPath(string path)
         {
+            string output = "w";
             if(path == ".")
             {
-                return Server.RootPath;
+                output = Server.RootPath;
             }
             else if(path == "..")
             {
-                return new DirectoryInfo(Server.RootPath).Parent.FullName;
+                output = new DirectoryInfo(Server.RootPath).Parent.FullName;
             }
             else if(Directory.Exists(path) || File.Exists(path))
             {
-                return path;
+                output = path;
             }
             else if(Directory.Exists(Server.RootPath + @"\" + path) || File.Exists(Server.RootPath + @"\" + path))
             {
-                return Server.RootPath + @"\" + path;
+                output = Server.RootPath + @"\" + path;
             }
             else if(Server.Var.Exists(path))
             {
-                return (string)Server.Var.Get(path);
+                output = (string)Server.Var.Get(path);
             }
             else
             {
@@ -130,13 +131,34 @@ namespace ConsoleInterface
                 {
                     if(Convert.ToInt32(path) <= Server.currentVisualizerContent.Length && Convert.ToInt32(path) != 0)
                     {
-                        return Server.currentVisualizerContent[Convert.ToInt32(path) - 1];
+                        output = Server.currentVisualizerContent[Convert.ToInt32(path) - 1];
                     }
                 }
-                catch { }
+                catch 
+                {
+                    output = "invalidPath";
+                }
             }
-            return "defavalidpathtrustme";
+            return CleanPath(output);
         }
+        public static string CleanPath(string input)
+        {
+            char[] chars = input.ToCharArray();
+            string outputString = "";
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] == '\u005c')
+                {
+                    while ((chars.Length >= i + 2 ? chars[i + 1] : 'a') == '\u005c')
+                    {
+                        i++;
+                    }
+                }
+                outputString = outputString + chars[i];
+            }
+            return outputString;
+        }
+
         public void Dispose()
         {
             return;

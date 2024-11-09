@@ -11,7 +11,7 @@ namespace ConsoleInterface
     //Hosts/provides variables needed by all other components
     public class Server
     {
-        public static VersionInfo VersionInfo = new VersionInfo("0.1.3.19", "0.0.0.0");
+        public static VersionInfo VersionInfo = new VersionInfo("0.1.3.22", "0.0.0.0");
 
         public static string RootPath;
         public static string crashPath = @"C:\WinTools\FIles\CI\crashLog.txt";
@@ -64,6 +64,8 @@ namespace ConsoleInterface
             InitializeBowls();
             Server.RootPath = (string)Settings.Get("homeDirectory");
             Server.mountSymbols = (string[])Settings.Get("mountSymbols");
+
+            RootPath = @"C:\";
         }
 
         public static void InitializeBowls()
@@ -160,7 +162,7 @@ namespace ConsoleInterface
         public static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = (Exception)e.ExceptionObject;
-            File.WriteAllText(crashPath, ConsoleDumper.DumpConsoleContents(crashPath)+  ex.Message + $"     Stacktrace: {ex.StackTrace}");
+            File.WriteAllText(crashPath, ConsoleDumper.DumpConsoleContents(crashPath)+  ex.Message + $"{'\u000d'}{'\u000a'}Stacktrace: {ex.StackTrace}{'\u000d'}{'\u000a'}Version: dev/{Server.VersionInfo.DevVersion}");
         }
     }
     public static class ConsoleDumper
@@ -190,7 +192,6 @@ namespace ConsoleInterface
 
         public static string DumpConsoleContents(string filePath)
         {
-            Next.Debug("dumping console");
             // Get the handle to the console output buffer
             IntPtr hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -201,7 +202,7 @@ namespace ConsoleInterface
 
             // Read the console buffer (arbitrary size)
             StringBuilder buffer = new StringBuilder(2000); // Adjust the size as needed
-            COORD coord = new COORD(0, 0); // Start reading from the top-left corner of the console
+            COORD coord = new COORD(0, 0); // Start reading from the top-left corner of the console 
             uint charsRead = 0;
 
             bool success = ReadConsoleOutputCharacter(hConsole, buffer, (uint)buffer.Capacity, coord, out charsRead);
@@ -212,6 +213,7 @@ namespace ConsoleInterface
             }
 
             // Dump the console content to the file
+            File.WriteAllText(filePath, buffer.ToString() + $"{'\u000d'}{'\u000a'}Version: dev/{Server.VersionInfo.DevVersion}");
             return buffer.ToString();
         }
     }

@@ -12,6 +12,7 @@ namespace ConsoleInterface
         {
             while(Server.allowExecute)
             {
+                CleanRoot();
                 if (Server.commandStack.Count > 0 && Server.commandStack.Peek().skip)
                 {
                     Server.commandStack.Pop();
@@ -46,9 +47,16 @@ namespace ConsoleInterface
             string outputString = "";
             for(int i = 0; i < chars.Length; i++)
             {
-                if()
+                if (chars[i] == '\u005c')
+                {
+                    while((chars.Length >= i +2 ? chars[i + 1] : 'a') == '\u005c')
+                    {
+                        i++;
+                    }
+                }
+                outputString = outputString + chars[i];
             }
-
+            Server.RootPath = outputString;
         }
         public void Execute()
         {

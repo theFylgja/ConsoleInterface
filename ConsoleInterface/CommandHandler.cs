@@ -35,6 +35,11 @@ namespace ConsoleInterface
                 case "opex":
                     IO.FileSystemHandler(new Command($"fs {Server.RootPath} opex"));
                     break;
+                case "dumpc":
+                    ConsoleDumper.DumpConsoleContents(@"C:\WinTools\Files\CI\dump.txt");
+                    Next.Adv(@"your dump file can now be found at: C:\WinTools\Files\CI\dump.txt");
+                    Process.Start("explorer.exe", @"C:\WinTools\Files\CI");
+                    break;
                 default:
                     if (File.Exists(cmd.command[1]))
                     {
@@ -64,7 +69,7 @@ namespace ConsoleInterface
         {
             public static void MountDirectory(Command cmd)
             { 
-                Server.RootPath = Directory.Exists(cmd.command[1]) ? cmd.command[1] : Server.RootPath;
+                Server.RootPath = cmd.command[1].Length == 2 && cmd.command[1].Substring(1, 1) == ":" ? cmd.command[1] + @"\" : (Directory.Exists(cmd.command[1]) ? cmd.command[1] : Server.RootPath);
             }
 
             public static void VarHandler(Command cmd)
