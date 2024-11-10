@@ -56,6 +56,12 @@ namespace ConsoleInterface
                             last = i + 1;
                         }
                         break;
+                    case '-':
+                        if(!wasOpened)
+                        {
+                            isPath[itemIndex] = true;
+                        }
+                        break;
                     case '"':
                         if (!wasOpened)
                         {

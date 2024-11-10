@@ -74,7 +74,10 @@ namespace ConsoleInterface
             {
                 try
                 {
-                    Visualizer.Call(Server.RootPath);
+                    if(current.head != "cd")
+                    {
+                        Visualizer.Call(Server.RootPath);
+                    }
                 }
                 catch (Exception e)
                 {

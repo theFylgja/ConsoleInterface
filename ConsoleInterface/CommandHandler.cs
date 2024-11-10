@@ -70,6 +70,7 @@ namespace ConsoleInterface
             public static void MountDirectory(Command cmd)
             { 
                 Server.RootPath = cmd.command[1].Length == 2 && cmd.command[1].Substring(1, 1) == ":" ? cmd.command[1] + @"\" : (Directory.Exists(cmd.command[1]) ? cmd.command[1] : Server.RootPath);
+                Visualizer.Call(Server.RootPath);
             }
 
             public static void VarHandler(Command cmd)

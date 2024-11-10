@@ -9,7 +9,7 @@ namespace VirtualCI
     {
         static void Main(string[] args)
         {
-            if(args.Length < 0)
+            if(args.Length > 0)
             {
                 if (File.Exists(args[0]))
                 {
@@ -21,10 +21,8 @@ namespace VirtualCI
                 }
             }
             File.WriteAllText(@"C:\WinTools\Files\CI\Cache\reboot.txt", "0");
-            AppDomain domain = AppDomain.CreateDomain("MainDomain");
-            domain.Load("ConsoleInterface.dll");
-            ObjectHandle main = domain.CreateInstance("ConsoleInterface", "AAMainClass");
-            Startup obj = (Startup)main.Unwrap();
+            ConsoleInterface.AAMainClass.Hub();
+            Server.commandStack.Push(new Command())
             
         }
     }
