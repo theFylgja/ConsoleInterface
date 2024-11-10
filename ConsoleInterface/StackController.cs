@@ -70,8 +70,22 @@ namespace ConsoleInterface
             {
                 Next.Text(current.fullString);
             }
+            if (!current.autoLoaded || current.command[0] == "cd" || Server.commandStack.Count == 0)
+            {
+                try
+                {
+                    Visualizer.Call(Server.RootPath);
+                }
+                catch (Exception e)
+                {
+                    if (e is System.UnauthorizedAccessException)
+                    {
+                        Next.Err("access to the Directory was denied by the OS");
+                    }
+                }
+            }
 
-            switch(current.command[0])
+            switch (current.command[0])
             {
                 case "ci":
                     Handler.CIHandle(current);
@@ -93,20 +107,6 @@ namespace ConsoleInterface
                     break;
                 default:
                     break;
-            }
-            if (!current.autoLoaded || current.command[0] == "cd" || Server.commandStack.Count == 0)
-            {
-                try
-                {
-                    Visualizer.Call(Server.RootPath);
-                }
-                catch (Exception e)
-                {
-                    if (e is System.UnauthorizedAccessException)
-                    {
-                        Next.Err("access to the Directory was denied by the OS");
-                    }
-                }
             }
             current.Dispose();
         }

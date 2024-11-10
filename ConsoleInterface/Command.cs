@@ -65,18 +65,6 @@ namespace ConsoleInterface
                         }
                         wasOpened = false;
                         break;
-                    case '@':
-                        if(!wasOpened)
-                        {
-                            isPath[itemIndex] = true;
-                        }
-                        break;
-                    case '-':
-                        if (!wasOpened)
-                        {
-                            isPath[itemIndex] = true;
-                        }
-                        break;
                     default:
                         break;
 

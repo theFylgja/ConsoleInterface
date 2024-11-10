@@ -15,6 +15,10 @@ namespace VirtualCI
                 {
                     Next.Adv("got path: " + args[0]);
                 }
+                else
+                {
+                    Next.Err("no path received");
+                }
             }
             File.WriteAllText(@"C:\WinTools\Files\CI\Cache\reboot.txt", "0");
             AppDomain domain = AppDomain.CreateDomain("MainDomain");
