@@ -7,12 +7,12 @@ namespace ConsoleInterface
     {
         public static void Execute()
         {
-            AAMainClass.Hub();
+            AAMainClass.Hub(" ");
         }
     }
     public class AAMainClass
     {
-        public static void Hub()
+        public static void Hub(string inheritedCommand)
         {
             Next.Debug("at Hub");
             Server.Initialize();
@@ -23,7 +23,7 @@ namespace ConsoleInterface
 
             try
             {
-                Server.commandStack.Push(new Command(Next.Cmd()));
+                Server.commandStack.Push(new Command(inheritedCommand));
             }
             catch(Exception e)
             {

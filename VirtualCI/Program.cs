@@ -21,16 +21,8 @@ namespace VirtualCI
                 }
             }
             File.WriteAllText(@"C:\WinTools\Files\CI\Cache\reboot.txt", "0");
-            ConsoleInterface.AAMainClass.Hub();
-            Server.commandStack.Push(new Command())
+            ConsoleInterface.AAMainClass.Hub(args.Length > 0 ? $"ci {args[0]} lsc" : "ci print ConsoleInterface");
             
-        }
-    }
-    public class Startup
-    {
-        public static void Execute()
-        {
-            AAMainClass.Hub();
         }
     }
 }
