@@ -40,6 +40,16 @@ namespace ConsoleInterface
                     Next.Adv(@"your dump file can now be found at: C:\WinTools\Files\CI\dump.txt");
                     Process.Start("explorer.exe", @"C:\WinTools\Files\CI");
                     break;
+                case "lvs":
+                    string[] names = Server.Var.GetAllNames();
+                    string[] wValues = new string[names.Length];
+                    for(int i = 0; i < names.Length; i++)
+                    {
+                        wValues[i] = $"{names[i]}  :  {(string)Server.Var.Get(names[i])}";
+                    }
+                    Next.Title("listing all variables:");
+                    Next.List(wValues);
+                    break;
                 default:
                     if (File.Exists(cmd.command[1]))
                     {

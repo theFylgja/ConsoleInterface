@@ -10,12 +10,12 @@ namespace ConsoleInterface
         
         //Colors
         public static ConsoleColor standard = ConsoleColor.White;
-        public static ConsoleColor cmd = ConsoleColor.Blue;
-        public static ConsoleColor arg = ConsoleColor.Blue;
+        public static ConsoleColor cmd = ConsoleColor.Magenta;
+        public static ConsoleColor arg = ConsoleColor.Magenta;
         public static ConsoleColor title = ConsoleColor.DarkMagenta;
-        public static ConsoleColor adv = ConsoleColor.Yellow;
+        public static ConsoleColor adv = ConsoleColor.DarkYellow;
         public static ConsoleColor err = ConsoleColor.Red;
-        public static ConsoleColor listItem = ConsoleColor.Gray;
+        public static ConsoleColor listItem = ConsoleColor.DarkCyan;
         public static ConsoleColor listEmptyError = ConsoleColor.Red;
         public static ConsoleColor debug = ConsoleColor.Cyan;
         public static ConsoleColor text = ConsoleColor.Black;
