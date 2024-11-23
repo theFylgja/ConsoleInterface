@@ -183,6 +183,8 @@ namespace ConsoleInterface
                         cmd.command[3] = cmd.command[3] ?? Server.RootPath;
                         try
                         {
+                            Next.Debug(cmd.command[3] = cmd.command[3] + $@"\{Server.GetFileName(cmd.command[1])}".Substring(0, $@"\{Server.GetFileName(cmd.command[1])}".Length - 4));
+                            Directory.CreateDirectory(cmd.command[3]);
                             ZipFile.ExtractToDirectory(cmd.command[1], cmd.command[3]);
                             Next.Adv("operation successful");
                         }

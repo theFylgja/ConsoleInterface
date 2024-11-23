@@ -11,7 +11,7 @@ namespace ConsoleInterface
     //Hosts/provides variables needed by all other components
     public class Server
     {
-        public static VersionInfo VersionInfo = new VersionInfo("0.1.3.28", "0.0.0.0");
+        public static VersionInfo VersionInfo = new VersionInfo("0.1.3.29", "0.0.0.0");
 
         public static string RootPath;
         public static string crashPath = @"C:\WinTools\FIles\CI\crashLog.txt";
@@ -158,6 +158,11 @@ namespace ConsoleInterface
         {
             FileInfo fileInfo = new FileInfo(fullPath);
             return fileInfo.Extension;
+        }
+        public static string GetFileName(string fullPath)
+        {
+            FileInfo fileInfo = new FileInfo(fullPath);
+            return fileInfo.Name;
         }
         public static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
