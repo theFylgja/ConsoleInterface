@@ -107,7 +107,7 @@ namespace ConsoleInterface
                 Server.VisualizerSettings.Set("fileColor", "darkGray");
                 Server.VisualizerSettings.Set("directoryColor", "gray");
                 Server.VisualizerSettings.Set("symbolColor", "white");
-                Server.VisualizerSettings.Set("currentDirColor", "yellow");
+                Server.VisualizerSettings.Set("currentDirColor", "darkMagenta");
                 Server.VisualizerSettings.Set("printCurrentDirectory", true);
                 Load();
             }
