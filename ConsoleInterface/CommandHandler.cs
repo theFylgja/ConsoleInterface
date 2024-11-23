@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -49,6 +49,12 @@ namespace ConsoleInterface
                     }
                     Next.Title("listing all variables:");
                     Next.List(wValues);
+                    break;
+                case "clear":
+                    Console.Clear();
+                    break;
+                case "hackmatrix":
+                    Hackermode.HackMatrix();
                     break;
                 default:
                     if (File.Exists(cmd.command[1]))
@@ -325,6 +331,24 @@ namespace ConsoleInterface
                     });
                 }
                 catch{}
+            }
+        }
+
+        public class Hackermode
+        {
+            public static void HackMatrix()
+            {
+                Random rnd = new Random();
+                Console.ForegroundColor = ConsoleColor.Green;
+                for(int i = 0; i < 1000; i++)
+                {
+                    for (int y = 0; y < 169; y++)
+                    {
+                        Console.Write(rnd.Next(0, 2));
+                    }
+                    Thread.Sleep(100);
+                    Console.WriteLine();
+                }
             }
         }
 
