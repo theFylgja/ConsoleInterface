@@ -11,7 +11,7 @@ namespace ConsoleInterface
     //Hosts/provides variables needed by all other components
     public class Server
     {
-        public static VersionInfo VersionInfo = new VersionInfo("0.1.3.27", "0.0.0.0");
+        public static VersionInfo VersionInfo = new VersionInfo("0.1.3.28", "0.0.0.0");
 
         public static string RootPath;
         public static string crashPath = @"C:\WinTools\FIles\CI\crashLog.txt";
