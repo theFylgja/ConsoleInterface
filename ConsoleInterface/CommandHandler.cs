@@ -299,6 +299,10 @@ namespace ConsoleInterface
                         client.DownloadFile("https://github.com/theFylgja/ConsoleInterface/raw/refs/heads/development/ConsoleInterface/bin/Release/ConsoleInterface.dll", @"C:\WinTools\Files\CI\Cache\ConsoleInterface.dll");
                         Next.Adv("you'll have to stop the application and move the dll file into your application directory");
                         Process.Start("explorer.exe", @"C:\WinTools\Files\CI\Cache");
+                        File.WriteAllText(@"C:\WinTools\Files\CI\Cache\reboot.txt", "1"); 
+                        Next.Adv("installing new Version...");
+                        Process.Start(@".\Updater.exe");
+                        Environment.Exit(0);
                     }
                 }
                 catch { }
@@ -340,9 +344,9 @@ namespace ConsoleInterface
             {
                 Random rnd = new Random();
                 Console.ForegroundColor = ConsoleColor.Green;
-                for(int i = 0; i < 1000; i++)
+                for(int i = 0; i < 100; i++)
                 {
-                    for (int y = 0; y < 169; y++)
+                    for (int y = 0; y < 69; y++)
                     {
                         Console.Write(rnd.Next(0, 2));
                     }

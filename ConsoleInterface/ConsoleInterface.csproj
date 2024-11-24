@@ -31,12 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BGDFEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Release\BGDFEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Bowl">
-      <HintPath>..\..\ToolBoxLibraries\Bowl\bin\Release\Bowl.dll</HintPath>
+      <HintPath>bin\Release\Bowl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

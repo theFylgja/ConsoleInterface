@@ -2,6 +2,7 @@
 using System.IO;
 using ConsoleInterface;
 using System.Runtime.Remoting;
+using System.Diagnostics;
 
 namespace VirtualCI
 {
