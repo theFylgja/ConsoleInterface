@@ -335,6 +335,7 @@ namespace ConsoleInterface
         {
             public static void HackMatrix()
             {
+                Console.Clear();
                 Random rnd = new Random();
                 Console.ForegroundColor = ConsoleColor.Green;
                 for(int i = 0; i < 100; i++)
