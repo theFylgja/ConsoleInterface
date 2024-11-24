@@ -68,7 +68,9 @@ namespace ConsoleInterface
             }
             else if(current.autoLoaded)
             {
-                Next.Text(current.fullString);
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine(current.fullString);
+                Console.ForegroundColor = ConsoleColor.White;
             }
             if (!current.autoLoaded || current.command[0] == "cd" || Server.commandStack.Count == 0)
             {

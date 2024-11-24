@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using ConsoleInterface;
+using System.Threading;
 using System.Runtime.Remoting;
 using System.Diagnostics;
 
@@ -8,9 +9,17 @@ namespace VirtualCI
 {
     public class Program
     {
+        static Mutex mutex = null;
         static void Main(string[] args)
         {
-            if(args.Length > 0)
+            const string mutexName = "TheRealG";
+            mutex = new Mutex(true, mutexName, out bool createdNew);
+
+            if (!createdNew)
+            {
+                Environment.Exit(0);
+            }
+            if (args.Length > 0)
             {
                 if (File.Exists(args[0]))
                 {
