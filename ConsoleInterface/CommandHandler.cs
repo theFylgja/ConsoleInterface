@@ -252,11 +252,6 @@ namespace ConsoleInterface
                         CheckForNewVersion();
                         break;
                     case "getn":
-                        if(!CheckForNewVersion())
-                        {
-                            Next.Adv("you are already up to date");
-                            break;
-                        }
                         GetNewVersion(); 
                         break;
                     default:
