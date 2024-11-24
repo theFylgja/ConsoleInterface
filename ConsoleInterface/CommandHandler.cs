@@ -297,8 +297,6 @@ namespace ConsoleInterface
                     {
                         Next.Adv("downloading new contents...");
                         client.DownloadFile("https://github.com/theFylgja/ConsoleInterface/raw/refs/heads/development/ConsoleInterface/bin/Release/ConsoleInterface.dll", @"C:\WinTools\Files\CI\Cache\ConsoleInterface.dll");
-                        Next.Adv("you'll have to stop the application and move the dll file into your application directory");
-                        Process.Start("explorer.exe", @"C:\WinTools\Files\CI\Cache");
                         File.WriteAllText(@"C:\WinTools\Files\CI\Cache\reboot.txt", "1"); 
                         Next.Adv("installing new Version...");
                         Process.Start(@".\Updater.exe");
