@@ -34,6 +34,14 @@ namespace ConsoleInterface
         //maybe add cached settings later
         public static void Initialize()
         {
+            if(!Directory.Exists(@"C:\WinTools"))
+            {
+                Directory.CreateDirectory(@"C:\WinTools");
+                Directory.CreateDirectory(@"C:\WinTools\Files");
+                Directory.CreateDirectory(@"C:\WinTools\Files\CI");
+                Directory.CreateDirectory(@"C:\WinTools\Files\CI\BGDF");
+                Directory.CreateDirectory(@"C:\WinTools\Files\CI\Cache");
+            }
             if(!Directory.Exists(@"C:\WinTools\Files\CI"))
             if(!Directory.Exists(@"C:\WinTools\Files\CI\Cache"))
             {
