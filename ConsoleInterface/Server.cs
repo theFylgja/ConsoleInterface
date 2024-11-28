@@ -11,7 +11,7 @@ namespace ConsoleInterface
     //Hosts/provides variables needed by all other components
     public class Server
     {
-        public static VersionInfo VersionInfo = new VersionInfo("0.1.5.41", "0.0.0.0");
+        public static VersionInfo VersionInfo = new VersionInfo("0.1.6.42", "0.0.0.0");
 
         public static string RootPath;
         public static string crashPath = @"C:\WinTools\FIles\CI\crashLog.txt";
@@ -34,11 +34,12 @@ namespace ConsoleInterface
         //maybe add cached settings later
         public static void Initialize()
         {
-            if(!Directory.Exists(@"C:\WinTools\Files\CI"))
-            if(!Directory.Exists(@"C:\WinTools\Files\CI\Cache"))
-            {
-                Directory.CreateDirectory(@"C:\WinTools\Files\CI\Cache");
-            }
+            if (!Directory.Exists(@"C:\WinTools")) { Directory.CreateDirectory(@"C:\WinTools"); }
+            if (!Directory.Exists(@"C:\WinTools\Files")) { Directory.CreateDirectory(@"C:\WinTools\FIles"); }
+            if (!Directory.Exists(@"C:\WinTools\Files\CI")) { Directory.CreateDirectory(@"C:\WinTools\Files\CI"); }
+            if (!Directory.Exists(@"C:\WinTools\Files\CI\Cache")) { Directory.CreateDirectory(@"C:\WinTools\Files\CI\Cache"); }
+            if (!Directory.Exists(@"C:\WinTools\Files\CI\BGDF")) { Directory.CreateDirectory(@"C:\WinTools\Files\CI\BGDF"); }
+
             string path1 = @"C:\WinTools\Files\CI\BGDF\settings.bgdf";
             string path2 = @"C:\WinTools\Files\CI\BGDF\visualizer.bgdf";
             string path3 = @"C:\WinTools\Files\CI\BGDF\designPreferences.bgdf";
