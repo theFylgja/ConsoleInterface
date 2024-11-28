@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppLauncher.cs" />
     <Compile Include="FileAccessProvider.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="BGDFEditor.cs" />
