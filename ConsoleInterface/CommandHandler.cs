@@ -281,6 +281,7 @@ namespace ConsoleInterface
                 }
                 catch
                 {
+                    Next.Err("couldn't connect to Server");
                     return false;
                 }
             }
@@ -298,7 +299,10 @@ namespace ConsoleInterface
                         Environment.Exit(0);
                     }
                 }
-                catch { }
+                catch 
+                {
+                    Next.Err("couldn't connect to server");
+                }
             }
 
             public static void OpenWebLink(string url)
